@@ -219,42 +219,52 @@ resizeCanvas();
 /* ── VILLAIN SPEEDS ── */
 const VILLAIN_SPEED=[0.012,0.018,0.044];
 
-/* ── QUESTIONS ── */
-const ALL_Q=[
-  {q:"What is Greta Thunberg?",a:"An activist",w:["A politician","A scientist","A singer"]},
-  {q:"Greta _____ given speeches.",a:"has",w:["have","had","is"]},
-  {q:"Scientists _____ spoken about climate for years.",a:"have",w:["has","had","was"]},
-  {q:"The school strike _____ started.",a:"has",w:["have","had","were"]},
-  {q:"Writers _____ written books about environment.",a:"have",w:["has","had","was"]},
-  {q:"People _____ read about the environment.",a:"have",w:["has","had","is"]},
-  {q:"Activists have _____ speeches about climate.",a:"given",w:["gave","give","giving"]},
-  {q:"Leaders have _____ people around the world.",a:"inspired",w:["inspire","inspires","inspiring"]},
-  {q:"Authors have _____ books about the environment.",a:"written",w:["wrote","write","writing"]},
-  {q:"People have _____ to many countries for climate.",a:"travelled",w:["travel","travels","travelling"]},
-  {q:"Activists have _____ in documentaries.",a:"appeared",w:["appear","appears","appearing"]},
-  {q:"Activists have _____ their own organizations.",a:"started",w:["start","starts","starting"]},
-  {q:"Activists have not _____ important prizes yet.",a:"won",w:["win","wins","winning"]},
-  {q:"Young people have started _____ for climate action.",a:"strikes",w:["games","parties","classes"]},
-  {q:"Activists have given _____ in many countries.",a:"speeches",w:["strikes","books","classes"]},
-  {q:"Some _____ have talked about climate change on TV.",a:"politicians",w:["books","parks","dogs"]},
-  {q:"One _____ can make a big difference.",a:"person",w:["pollution","water","trees"]},
-  {q:"People have joined _____ to protect the planet.",a:"protests",w:["oceans","books","pollution"]},
-  {q:"Many groups have worked to protect the _____.",a:"environment",w:["pollution","climate change","global warming"]},
-  {q:"Climate change has become a serious global _____.",a:"problem",w:["strike","speech","event"]},
-  {q:"Many people have protested _____ many years.",a:"for",w:["since","already","yet"]},
-  {q:"Students have worried about climate _____ 2018.",a:"since",w:["for","already","yet"]},
-  {q:"Some activists have _____ given important speeches.",a:"already",w:["yet","since","for"]},
-  {q:"Many countries haven't taken strong action _____.",a:"yet",w:["for","since","already"]},
-  {q:"People have protected the environment _____ a long time.",a:"for",w:["since","already","yet"]},
-  {q:"Some politicians have _____ talked about climate on TV.",a:"already",w:["yet","since","for"]},
-  {q:"Many groups haven't started new protests _____.",a:"yet",w:["for","since","already"]},
-  {q:"Activists have travelled to countries _____ two years.",a:"for",w:["since","already","yet"]},
-  {q:"Greta has _____ outside the Swedish parliament.",a:"sat",w:["sit","sits","sitting"]},
-  {q:"Environmental problems have _____ more serious since 2000.",a:"become",w:["became","becomes","becoming"]},
-];
+/* ── QUESTIONS — fixed per level, never mixed ── */
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
-const _sq=shuffle(ALL_Q);
-const ROOM_Q=[_sq.slice(0,10),_sq.slice(10,20),_sq.slice(20,30)];
+
+// Level 1: Have or Has? (only 2 options each)
+const Q_L1=[
+  {q:"Greta _____ given speeches.",a:"has",w:["have"]},
+  {q:"Scientists _____ spoken about climate change for years.",a:"have",w:["has"]},
+  {q:"The school strike _____ started.",a:"has",w:["have"]},
+  {q:"Writers _____ written books about the environment.",a:"have",w:["has"]},
+  {q:"People _____ read information about the environment.",a:"have",w:["has"]},
+  {q:"_____ you protected the environment?",a:"Have",w:["Has"]},
+  {q:"My sister _____ read about climate change.",a:"hasn't",w:["haven't"]},
+  {q:"My friends _____ given public speeches.",a:"haven't",w:["hasn't"]},
+  {q:"I _____ won a Nobel Prize.",a:"haven't",w:["hasn't"]},
+  {q:"Greta and other activists _____ inspired many young people.",a:"have",w:["has"]},
+];
+
+// Level 2: Verbs (4 options each)
+const Q_L2=[
+  {q:"Many activists have _____ speeches about climate change.",a:"given",w:["give","gave","giving"]},
+  {q:"Some leaders have _____ people around the world.",a:"inspired",w:["inspire","inspires","inspiring"]},
+  {q:"Authors have _____ books about the environment.",a:"written",w:["write","wrote","writing"]},
+  {q:"Some people have _____ to different countries.",a:"travelled",w:["travel","travels","travelling"]},
+  {q:"Environmental activists have _____ in documentaries.",a:"appeared",w:["appear","appears","appearing"]},
+  {q:"Environmental activists have _____ their own organizations.",a:"started",w:["start","starts","starting"]},
+  {q:"Many activists haven't _____ important prizes yet.",a:"won",w:["win","wins","winning"]},
+  {q:"I have _____ to Greta's speech.",a:"listened",w:["listen","listens","listening"]},
+  {q:"My mother has _____ me.",a:"inspired",w:["inspire","inspires","inspiring"]},
+  {q:"Activists have _____ articles about the environment.",a:"written",w:["write","wrote","writing"]},
+];
+
+// Level 3: Environment & Activism Vocabulary (4 options each)
+const Q_L3=[
+  {q:"Young people have started _____ for climate action.",a:"strikes",w:["conditions","superpowers","activists"]},
+  {q:"Activists have given _____ in many countries.",a:"speeches",w:["strikes","documentaries","nominations"]},
+  {q:"Some _____ have talked about climate change on TV.",a:"politicians",w:["documentaries","conditions","books"]},
+  {q:"People have joined _____ to protect the planet.",a:"protests",w:["speeches","documentaries","conditions"]},
+  {q:"Many groups have worked to protect the _____.",a:"environment",w:["parliament","syndrome","warming"]},
+  {q:"Climate change has become a serious global _____.",a:"problem",w:["parliament","syndrome","strike"]},
+  {q:"Climate change is changes in the world's _____.",a:"weather",w:["parliament","books","protests"]},
+  {q:"A _____ is a formal talk.",a:"speech",w:["strike","documentary","nomination"]},
+  {q:"A _____ is a protest where people stop working or studying.",a:"strike",w:["speech","documentary","parliament"]},
+  {q:"Greta has worked to stop global _____.",a:"warming",w:["weather","activists","documentary"]},
+];
+
+const ROOM_Q=[shuffle(Q_L1),shuffle(Q_L2),shuffle(Q_L3)];
 
 /* ── PIXEL ART OBJECTS ── */
 const OBJ_TYPES=[
@@ -469,12 +479,7 @@ function roomFail(){
   showOv(true);
 }
 
-function restartRoom(){
-  lives=3;pollMeter=0;collected=0;doorOpen=false;bright=0;roomTime=0;
-  objs=makeObjs(room);px=TW*2;py=H/2;invincible=0;
-  resetVillain();gameActive=true;quizActive=false;
-  showOv(false);updateHUD();
-}
+function restartRoom(){startLevel(room);}
 
 /* ── QUIZ ── */
 function startQuiz(o){quizObj=o;quizTries=0;quizActive=true;gameActive=false;showQuizPanel();}
@@ -508,10 +513,10 @@ function checkA(btn,chosen,correct){
 /* ── ROOMS ── */
 function nextRoom(){
   if(room<2){
-    room++;lives=3;collected=0;doorOpen=false;bright=0;pollMeter=0;roomTime=0;
-    objs=makeObjs(room);px=TW*2;py=H/2;invincible=0;resetVillain();
-    gameActive=true;showOv(false);updateHUD();
+    room++;
+    showLevelIntro(room);
   } else {finishGame();}
+}
 }
 
 /* ── SPEECH BONUS ── */
@@ -630,15 +635,32 @@ function showTitle(){
   document.getElementById('hud').style.display='none';
   document.getElementById('dpad-area').style.display='none';
   setPn(`<h2>🌍 ECO QUEST</h2>
-<p style="color:#d1fae5;text-align:left;font-size:7px;line-height:2.4;">You will practise:<br>
-<span style="color:#4ade80">•</span> The Present Perfect Simple<br>
-<span style="color:#4ade80">•</span> Yet, already, for, since<br>
-<span style="color:#4ade80">•</span> Vocabulary about the environment</p>
-<p style="color:#fbbf24;margin:.5rem 0;">Get ready!</p>
-<p style="color:#9ca3af;font-size:6px;margin-bottom:.8rem;">PROFESORA LAURA REYES</p>
-<button class="pb" onclick="showReg()">▶ PLAY</button>
+<p style="color:#9ca3af;font-size:6px;margin-bottom:.6rem;">PROFESORA LAURA REYES</p>
+<button class="pb" onclick="showStory()">▶ PLAY</button>
 <button class="pb gh" onclick="showLB()" style="margin-top:.4rem">🏆 LEADERBOARD</button>`);
   showOv(true);
+}
+
+function showStory(){
+  setPn(`<h2>🌍 ECO QUEST</h2>
+<p style="color:#fbbf24;font-size:7px;margin-bottom:.6rem;font-style:italic">One planet. One student. One mission.</p>
+<p style="text-align:left;font-size:7px;line-height:2.3;color:#d1fae5;">
+<span style="color:#4ade80">THE STORY:</span><br>
+The Earth is in danger. Pollution has spread across the forest, the ocean and the city. A dark monster roams each area, making things worse every second.<br><br>
+YOU are an eco-agent. Use your English to clean up the planet!
+</p>
+<p style="text-align:left;font-size:7px;line-height:2.3;color:#d1fae5;margin-top:.5rem;">
+<span style="color:#4ade80">HOW TO PLAY:</span><br>
+<span style="color:#fbbf24">•</span> Move with arrow keys or D-pad<br>
+<span style="color:#fbbf24">•</span> Touch glowing objects 🔴 and answer questions<br>
+<span style="color:#fbbf24">•</span> Collect all 10 to open the exit door<br>
+<span style="color:#fbbf24">•</span> Avoid the monster — you only have 3 lives!
+</p>
+<p style="text-align:left;font-size:7px;line-height:2.3;color:#d1fae5;margin-top:.5rem;">
+<span style="color:#4ade80">3 LEVELS:</span><br>
+🌲 Forest &nbsp;·&nbsp; 🌊 Ocean &nbsp;·&nbsp; 🏙️ City
+</p>
+<button class="pb" onclick="showReg()" style="margin-top:.6rem">▶ CONTINUE</button>`);
 }
 
 function showReg(){
@@ -648,18 +670,40 @@ function showReg(){
 <button class="pb" onclick="beginGame()">▶ START MISSION</button>`);
 }
 
+const LEVEL_NAMES=['🌲 LEVEL 1: FOREST','🌊 LEVEL 2: OCEAN','🏙️ LEVEL 3: CITY'];
+const LEVEL_SUBTITLES=['Have or Has?','Verbs','Environment & Activism Vocabulary'];
+const LEVEL_TIPS=[
+  'Choose have or has — or haven\'t / hasn\'t!',
+  'Choose the correct past participle form.',
+  'Choose the correct word to complete the sentence.'
+];
+
+function showLevelIntro(r){
+  gameActive=false;quizActive=false;
+  showOv(true);
+  setPn(`<h2>${LEVEL_NAMES[r]}</h2>
+<p style="color:#fbbf24;font-size:9px;line-height:1.8;">${LEVEL_SUBTITLES[r]}</p>
+<p style="color:#d1fae5;font-size:7px;margin-top:.5rem;">${LEVEL_TIPS[r]}</p>
+<p style="color:#9ca3af;font-size:6.5px;margin-top:.5rem;">Collect all 10 items to open the exit door.<br>Watch out for the pollution monster!</p>
+<button class="pb" style="margin-top:.8rem" onclick="startLevel(${r})">▶ START</button>`);
+}
+
 function beginGame(){
   const n=(document.getElementById('rn')||{value:''}).value.trim();
   const c=(document.getElementById('rc')||{value:''}).value.trim();
   if(!n||!c){alert('Enter your name and course!');return;}
   pname=n;pcourse=c;score=0;room=0;lives=3;collected=0;doorOpen=false;bright=0;pollMeter=0;roomTime=0;
-  objs=makeObjs(0);px=TW*2;py=H/2;pdir=1;pstep=0;invincible=0;
-  resetVillain();gameActive=true;quizActive=false;
-  showOv(false);
   document.getElementById('hud').style.display='flex';
   document.getElementById('dpad-area').style.display='flex';
-  updateHUD();
   resizeCanvas();
+  showLevelIntro(0);
+}
+
+function startLevel(r){
+  room=r;lives=3;collected=0;doorOpen=false;bright=0;pollMeter=0;roomTime=0;
+  objs=makeObjs(r);px=TW*2;py=H/2;pdir=1;pstep=0;invincible=0;
+  resetVillain();gameActive=true;quizActive=false;
+  showOv(false);updateHUD();
 }
 
 async function showLB(){
