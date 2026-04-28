@@ -350,7 +350,7 @@ function resetVillain(){villain={x:180,y:104,vx:1,vy:1,phase:0,stun:0};}
 
 /* ── STATE ── */
 let px=TW*2,py=TW*5,pdir=1,pstep=0,pframe=0;
-let room=0,collected=0,score=0,lives=3,doorOpen=false,bright=0;
+let room=0,collected=0,score=0,scoreAtRoomStart=0,lives=3,doorOpen=false,bright=0;
 let pollMeter=0,roomTime=0,invincible=0;
 let pname='',pcourse='';
 let objs=[],quizObj=null,quizTries=0;
@@ -471,9 +471,11 @@ function hitPlayer(){
 
 function roomFail(){
   gameActive=false;quizActive=false;
+  score=scoreAtRoomStart;
+  updateHUD();
   setPn(`<h2>💀 ROOM FAILED</h2>
 <p>The pollution monster got you!<br>Try this room again.</p>
-<p style="color:#fbbf24">Score so far: ${score}</p>
+<p style="color:#fbbf24">Score reset to: ${score} pts</p>
 <button class="pb" onclick="restartRoom()">↩ TRY AGAIN</button>
 <button class="pb gh" onclick="showTitle()" style="margin-top:.4rem">↩ MAIN MENU</button>`);
   showOv(true);
@@ -705,6 +707,7 @@ function beginGame(){
 
 function startLevel(r){
   room=r;lives=3;collected=0;doorOpen=false;bright=0;pollMeter=0;roomTime=0;
+  scoreAtRoomStart=score;
   objs=makeObjs(r);px=TW*2;py=H/2;pdir=1;pstep=0;invincible=0;
   resetVillain();gameActive=true;quizActive=false;
   showOv(false);updateHUD();
